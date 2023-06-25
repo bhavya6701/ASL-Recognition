@@ -1,13 +1,6 @@
-import customtkinter
 import cv2
 import numpy as np
-from PIL import ImageDraw, Image
-from customtkinter import CTkLabel, CTkCanvas, CTkButton, CTkFrame
 from keras import models
-
-classifier_set = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'del', 5: 'E', 6: 'F', 7: 'G', 8: 'H', 9: 'I', 10: 'J', 11: 'K',
-                  12: 'L', 13: 'M', 14: 'N', 15: 'O', 16: 'P', 17: 'Q', 18: 'R', 19: 'S', 20: 'space', 21: 'T', 22: 'U',
-                  23: 'V', 24: 'W', 25: 'X', 26: 'Y', 27: 'Z'}
 
 
 def predict_digit(img):
@@ -25,7 +18,6 @@ def predict_digit(img):
 
 # load the trained model from pickle file
 model = models.load_model("asl_recognition_model.h5")
-
 
 # class MainWindow:
 #

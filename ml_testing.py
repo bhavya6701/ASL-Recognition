@@ -1,24 +1,34 @@
 import keras
-import mediapipe as mp
 import numpy as np
+import pandas as pd
 from keras import models
 
-from data_preprocessing import process_images
-from interface import classifier_set
+from data_preprocessing import process_data, classifier_set
 
 
 def test_model(model: keras.Model):
     path = './asl_alphabet_test'
-    mp_hands = mp.solutions.hands
-    hands = mp_hands.Hands(static_image_mode=True, max_num_hands=2, min_detection_confidence=0.5)
-    data = []
-    process_images(hands, path, data)
-    data = np.array(data)
+    data, output_labels = process_data(path)
+    data = np.asarray(data)
 
-    for i in range(len(data)):
-        result = model.predict(data[i])
-        print("Predicted Value:", str(classifier_set[np.argmax(result)]))
-        print("Accuracy:", str(int(max(result) * 100)) + "%")
+    all_labels = classifier_set.values()
+    df = pd.get_dummies(output_labels)
+
+    missing_labels = set(all_labels) - set(output_labels)
+    for label in missing_labels:
+        df[label] = 0
+
+    # Reorder columns to match the order of all_labels
+    df = df.reindex(columns=all_labels, fill_value=0)
+    labels = np.asarray(df)
+
+    result = model.predict(data)
+    for i in range(len(result)):
+        print("Predicted Value:", str(classifier_set[np.argmax(result[i])]))
+        print("Accuracy:", str(int(max(result[i]) * 100)) + "%")
+    pd.set_option('display.max_columns', None)
+    print(df)
+
 
 def main():
     model = models.load_model('asl_recognition_model.h5')

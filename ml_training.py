@@ -1,9 +1,9 @@
 import pickle
 
-from keras import Sequential
-from keras.layers import Dense
 import numpy as np
 import pandas as pd
+from keras import Sequential
+from keras.layers import Dense
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 
