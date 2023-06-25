@@ -1,18 +1,19 @@
 import pickle
 
-import pandas as pd
-import keras
+from keras import Sequential
+from keras.layers import Dense
 import numpy as np
+import pandas as pd
 from matplotlib import pyplot as plt
 from sklearn.model_selection import train_test_split
 
 
 def create_model():
-    model = keras.Sequential(
+    model = Sequential(
         [
-            keras.layers.Dense(112, input_shape=(42,), activation="relu"),
-            keras.layers.Dense(56, activation="relu"),
-            keras.layers.Dense(28, activation="softmax")
+            Dense(112, input_shape=(42,), activation="relu"),
+            Dense(56, activation="relu"),
+            Dense(28, activation="softmax")
         ]
     )
     model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
@@ -52,7 +53,7 @@ def main():
     plot_learning_curve(training)
 
     # Save the trained model
-    model.save('asl_recognition_model')
+    model.save('asl_recognition_model.h5')
 
 
 if __name__ == '__main__':
