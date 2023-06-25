@@ -46,8 +46,9 @@ def process_data():
                         normalized_data.append(x - min(x_points))
                         normalized_data.append(y - min(y_points))
 
-                data.append(normalized_data)
-                labels.append(directory)
+                    data.append(normalized_data)
+                    labels.append(directory)
+                    normalized_data = []
 
             count += 1
             print(count)

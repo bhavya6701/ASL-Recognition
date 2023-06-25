@@ -1,9 +1,8 @@
-import keras
 import pickle
 
+import keras
 import numpy as np
 from matplotlib import pyplot as plt
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 
@@ -25,7 +24,7 @@ def train_model(model, data, labels, batch_size=128, epochs=15):
     x_train, x_test, y_train, y_test = train_test_split(data, labels, test_size=0.2, shuffle=True, stratify=labels)
 
     model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
-    training_history = model.fit(x_train, y_train, epochs=epochs, validation_split=0.25)
+    training_history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.25)
     score = model.evaluate(x_test, y_test, verbose=0)
     print("Test loss:", score[0])
     print("Test accuracy:", score[1])
@@ -44,11 +43,11 @@ def plot_learning_curve(training):
 
 def main():
     data_labels = pickle.load(open('data.pickle', 'rb'))
-    filtered_data = np.asarray([data for data, labels in zip(data_labels['data'], data_labels['labels']) if len(data) == 42])
-    filtered_labels = np.asarray([labels for data, labels in zip(data_labels['data'], data_labels['labels']) if len(data) == 42])
+    data = np.array(data_labels['data'])
+    labels = np.array(data_labels['labels'])
 
     model = create_model()
-    training = train_model(model, filtered_data, filtered_labels, 128, 5)
+    training = train_model(model, data, labels, epochs=5)
     plot_learning_curve(training)
 
     # Save the trained model
