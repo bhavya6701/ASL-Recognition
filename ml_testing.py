@@ -6,6 +6,7 @@ from keras import models
 from data_preprocessing import process_data, classifier_set
 
 
+# Test the model
 def test_model(model: keras.Model):
     path = './asl_alphabet_test'
     data, output_labels = process_data(path)
@@ -18,18 +19,14 @@ def test_model(model: keras.Model):
     for label in missing_labels:
         df[label] = 0
 
-    # Reorder columns to match the order of all_labels
-    df = df.reindex(columns=all_labels, fill_value=0)
-    labels = np.asarray(df)
-
     result = model.predict(data)
     for i in range(len(result)):
         print("Predicted Value:", str(classifier_set[np.argmax(result[i])]))
         print("Accuracy:", str(int(max(result[i]) * 100)) + "%")
     pd.set_option('display.max_columns', None)
-    print(df)
 
 
+# Main function
 def main():
     model = models.load_model('asl_recognition_model.h5')
     test_model(model)

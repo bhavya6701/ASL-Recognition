@@ -9,6 +9,7 @@ classifier_set = {0: 'A', 1: 'B', 2: 'C', 3: 'D', 4: 'E', 5: 'F', 6: 'G', 7: 'H'
                   21: 'V', 22: 'W', 23: 'X', 24: 'Y', 25: 'Z'}
 
 
+# Process the data
 def process_data(data_dir):
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(static_image_mode=True, max_num_hands=2, min_detection_confidence=0.1)
@@ -27,6 +28,7 @@ def process_data(data_dir):
     return data, labels
 
 
+# Process the images in the directory
 def process_images(path, data, hands, total_count, directory="", labels=None):
     if labels is None:
         labels = []
@@ -41,6 +43,7 @@ def process_images(path, data, hands, total_count, directory="", labels=None):
     return count
 
 
+# Process the image
 def process_img(landmarks, data, labels, directory):
     x_points = []
     y_points = []
@@ -64,6 +67,7 @@ def process_img(landmarks, data, labels, directory):
             normalized_data = []
 
 
+# Save the data to a file
 def save_data(data, labels):
     f = open('data.pickle', 'wb')
     pickle.dump({'data': data, 'labels': labels}, f)
@@ -71,6 +75,7 @@ def save_data(data, labels):
     print('Data saved')
 
 
+# Process the data and save it to a file
 def main():
     data, labels = process_data('./asl_alphabet_train')
     save_data(data, labels)
