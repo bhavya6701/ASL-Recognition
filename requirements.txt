@@ -1,0 +1,7 @@
+cv2
+keras
+matplotlib
+numpy
+pandas
+pip
+scikit-learn
