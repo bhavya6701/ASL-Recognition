@@ -11,9 +11,9 @@ from sklearn.model_selection import train_test_split
 def create_model():
     model = Sequential(
         [
-            Dense(112, input_shape=(42,), activation="relu"),
-            Dense(56, activation="relu"),
-            Dense(28, activation="softmax")
+            Dense(104, input_shape=(42,), activation="relu"),
+            Dense(52, activation="relu"),
+            Dense(26, activation="softmax")
         ]
     )
     model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
