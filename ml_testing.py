@@ -1,7 +1,7 @@
-import keras
+from tensorflow import keras
 import numpy as np
 import pandas as pd
-from keras import models
+from tensorflow.keras import models
 
 from data_preprocessing import process_data, classifier_set
 

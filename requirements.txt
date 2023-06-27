@@ -1,7 +1,6 @@
 opencv
-keras
+tensorflow
 matplotlib
 numpy
 pandas
-pip
 scikit-learn
