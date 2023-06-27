@@ -6,6 +6,7 @@ user-friendly interface for real-time hand sign recognition.
 ## Table of Contents
 - Prerequisites
 - Installation
+- Creating Separate Environment
 - Project Structure
 - Usage
 - Dataset
