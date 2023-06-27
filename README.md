@@ -39,6 +39,16 @@ conda install --file requirements.txt
 ```console
 pip install mediapipe
 ```
+## Creating Separate Environment 
+- If you want to create a separate environment for purpose of this project, 
+1. run the below command
+```console
+conda env create --file env.yml
+```
+2. Install `mediapipe` package using PyPI in Conda.
+```console
+pip install mediapipe
+```
 
 ## Project Structure
 The project consists of the following files:
