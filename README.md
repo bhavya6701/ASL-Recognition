@@ -3,6 +3,9 @@ This project aims to recognize American Sign Language (ASL) gestures using compu
 It utilizes Python, Keras, MediaPipe, and CV2 to preprocess data, train the model, test its performance, and provide a
 user-friendly interface for real-time hand sign recognition.
 
+![BAD AI 2023-09-18 1_32_25 PM](https://github.com/bhavya6701/ASL-Recognition/assets/92869151/98770781-270f-4002-a1d7-9c05f23cdb37)
+
+
 ## Table of Contents
 - Prerequisites
 - Installation
